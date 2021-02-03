@@ -1,4 +1,4 @@
-package net.luvina.blog.entity;
+ package net.luvina.blog.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "comments")
 public class Comment {
@@ -17,7 +18,7 @@ public class Comment {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  private String content;
+  private String title;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id")
@@ -25,7 +26,7 @@ public class Comment {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
-  private User user;
+  private User author;
 
   public long getId() {
     return id;
@@ -35,12 +36,12 @@ public class Comment {
     this.id = id;
   }
 
-  public String getContent() {
-    return content;
+  public String getTitle() {
+    return title;
   }
 
-  public void setContent(String content) {
-    this.content = content;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public Post getPost() {
@@ -51,12 +52,12 @@ public class Comment {
     this.post = post;
   }
 
-  public User getUser() {
-    return user;
+  public User getAuthor() {
+    return author;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setAuthor(User user) {
+    this.author = user;
   }
 
 }
