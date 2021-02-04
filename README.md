@@ -20,13 +20,26 @@
 
 4. Đề xuất của Vân là phù hợp với quy tắc clean code.
 
+5. https://github.com/huucanh2011/clean-code/tree/main/phan1/blog
+
 ## Phần 2: OOP và SOLID
+### 1. Hãy lập trình Java để thực hiện thiết kế như hình vẽ
+
+https://github.com/huucanh2011/clean-code/tree/main/phan2
+
+### 2. Composition over Inheritance và DI
 
 ## Phần 3: Thiết kế CSDL Quan hệ theo đặc tả
 
+https://github.com/huucanh2011/clean-code/blob/main/phan3/ERD.png
+
 ## Phần 4: Thiết kế RESTful API
 
+https://github.com/huucanh2011/clean-code/tree/main/phan4
+
 ## Phần 5: Lập trình Restful API
+
+https://github.com/huucanh2011/clean-code/tree/main/phan5
 
 ## Trắc nghiệm
 1. Điều nào không đúng khi nói về Design Pattern?
