@@ -11,3 +11,7 @@ VALUES ('0981023023', 10, 1),
 INSERT INTO students(year, id)
 VALUES (3, 3),
   (4, 4);
+
+INSERT INTO courses(id, name, location, opened, teacher_id)
+VALUES (1, 'Spring Boot Fundamental', 'Ha Noi', '20210101', 1),
+(2, 'Spring Boot Microservice', 'Ha Noi', '20210202', 2);
