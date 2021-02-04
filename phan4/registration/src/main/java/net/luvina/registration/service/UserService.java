@@ -1,9 +1,8 @@
 package net.luvina.registration.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import net.luvina.registration.dto.UserDto;
@@ -12,6 +11,7 @@ import net.luvina.registration.entity.User;
 import net.luvina.registration.error.ErrorCodes;
 import net.luvina.registration.error.ServiceRuntimeException;
 import net.luvina.registration.factory.UserFactory;
+import net.luvina.registration.mapper.UserMapper;
 import net.luvina.registration.repository.UserRepository;
 
 @Service
@@ -22,6 +22,9 @@ public class UserService {
 
   private final UserFactory userFactory;
 
+  private final UserMapper userMapper;
+
+  @Transactional(readOnly = true)
   public User findUserByEmail(String email) {
     return userRepository.findByEmail(email).orElse(null);
   }
@@ -31,10 +34,7 @@ public class UserService {
     if (findUserByEmail(userDto.getEmail()) == null) {
       User user = userFactory.createUser(userDto);
       User createdUser = userRepository.save(user);
-      UserResDto userResDto = new UserResDto();
-      userResDto.setName(createdUser.getName());
-      userResDto.setEmail(createdUser.getEmail());
-      return userResDto;
+      return userMapper.convertToUserResDto(createdUser);
     } else {
       throw new ServiceRuntimeException(HttpStatus.BAD_REQUEST, ErrorCodes.USER_ER001, "Email has already been taken");
     }

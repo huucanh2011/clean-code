@@ -2,42 +2,26 @@ package net.luvina.registration.factory;
 
 import org.springframework.stereotype.Component;
 
+import lombok.RequiredArgsConstructor;
 import net.luvina.registration.dto.UserDto;
-import net.luvina.registration.entity.Student;
-import net.luvina.registration.entity.Teacher;
 import net.luvina.registration.entity.User;
 import net.luvina.registration.enums.UserType;
+import net.luvina.registration.mapper.UserMapper;
 
 @Component
+@RequiredArgsConstructor
 public class UserFactory {
+
+  private final UserMapper userMapper;
 
   public User createUser(UserDto userDto) {
     if (UserType.STUDENT.toString().equals(userDto.getMode())) {
-      return createStudent(userDto);
+      return userMapper.convertToStudent(userDto);
     } else if (UserType.TEACHER.toString().equals(userDto.getMode())) {
-      return createTeacher(userDto);
+      return userMapper.convertToTeacher(userDto);
     } else {
       throw new UnsupportedOperationException("Unsupported register mode");
     }
-  }
-
-  private User createStudent(UserDto userDto) {
-    Student student = new Student();
-    student.setName(userDto.getName());
-    student.setEmail(userDto.getEmail());
-    student.setPassword(userDto.getPassword());
-    student.setYear(userDto.getStudent().getYear());
-    return student;
-  }
-
-  private User createTeacher(UserDto userDto) {
-    Teacher teacher = new Teacher();
-    teacher.setName(userDto.getName());
-    teacher.setEmail(userDto.getEmail());
-    teacher.setPassword(userDto.getPassword());
-    teacher.setPhone(userDto.getTeacher().getPhone());
-    teacher.setExperiences(userDto.getTeacher().getExperiences());
-    return teacher;
   }
 
 }
